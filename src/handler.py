@@ -1,7 +1,7 @@
 import logging
 from typing import Any
 
-from car_pool import CarPoolSolver, Constraint
+from car_pool_solver import CarPoolSolver, Constraint
 from constraints.hard.assign_person_to_only_one_car import assign_person_to_only_one_car
 from constraints.hard.owner_drives_when_passengers import owner_drives_when_passengers
 from constraints.hard.seats_quantity import seats_quantity

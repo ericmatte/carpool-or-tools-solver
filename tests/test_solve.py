@@ -2,6 +2,7 @@ import json
 import logging
 from typing import Any, Literal, cast
 
+from data.solver_results import SolverResults
 from handler import lambda_handler
 from scripts.run import read_file
 
@@ -13,16 +14,18 @@ def get_mock_payload(mock: Literal["overflow", "one_car", "two_cars", "three_car
 def solve(body: Any):
     result = lambda_handler(body, None)
     logging.debug(f"Result: {result}")
-    assert result["success"] == True
     assert result["status"] == "optimal"
-    return result
+    assert result["success"] == True
+    solver_results: SolverResults = result["result"]
+    return solver_results
 
 
 class TestSolve:
     def test_must_solve_mock(self):
         body = get_mock_payload("overflow")
 
-        solve(body)
+        result = solve(body)
+        assert len(result.unassigned_people) > 0
 
     def test_return_400_if_empty_body(self):
         body = lambda_handler(cast(Any, None))
