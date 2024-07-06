@@ -24,3 +24,6 @@ jobs:
 
       - name: Run tests
         run: pdm test
+
+      - name: Test build
+        run: scripts/build.sh

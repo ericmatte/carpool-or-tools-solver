@@ -5,8 +5,6 @@ from typing import Any, Literal, cast
 from handler import lambda_handler
 from scripts.run import read_file
 
-TEST_FILE = "tests/mocks/payload.json"
-
 
 def get_mock_payload(mock: Literal["overflow", "one_car", "two_cars", "three_cars"]):
     return json.loads(read_file(f"tests/mocks/{mock}.json"))
