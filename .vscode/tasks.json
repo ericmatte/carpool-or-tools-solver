@@ -1,0 +1,11 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "focusDebugConsole",
+      "type": "shell",
+      "command": "${command:workbench.debug.action.toggleRepl}",
+      "problemMatcher": []
+    }
+  ]
+}

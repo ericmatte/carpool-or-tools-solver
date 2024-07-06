@@ -1,0 +1,23 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Python: Debug script",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "scripts/run.py",
+      "args": ["tests/mocks/${input:jsonFile}.json", "--log", "DEBUG"],
+      "console": "internalConsole",
+      "justMyCode": true,
+      "preLaunchTask": "focusDebugConsole"
+    }
+  ],
+  "inputs": [
+    {
+      "id": "jsonFile",
+      "type": "promptString",
+      "description": "JSON mock to use: [overflow, one_car, two_cars, three_cars]",
+      "default": "overflow"
+    }
+  ]
+}

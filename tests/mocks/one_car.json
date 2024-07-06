@@ -1,0 +1,30 @@
+{
+  "cars": [
+    {
+      "id": 1,
+      "make": "Smart",
+      "model": "ForTwo",
+      "seats": 2,
+      "owner_id": 1
+    },
+    {
+      "id": 2,
+      "make": "Toyota",
+      "model": "Corolla",
+      "seats": 5,
+      "owner_id": 2
+    },
+    {
+      "id": 3,
+      "make": "Honda",
+      "model": "Civic",
+      "seats": 5,
+      "owner_id": 3
+    }
+  ],
+  "people": [
+    { "id": 1, "name": "Aria Moon" },
+    { "id": 2, "name": "Leo Storm" },
+    { "id": 3, "name": "Nova Star" }
+  ]
+}

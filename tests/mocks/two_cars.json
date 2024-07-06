@@ -1,0 +1,43 @@
+{
+  "cars": [
+    {
+      "id": 1,
+      "make": "Smart",
+      "model": "ForTwo",
+      "seats": 2,
+      "owner_id": 1
+    },
+    {
+      "id": 2,
+      "make": "Toyota",
+      "model": "Corolla",
+      "seats": 5,
+      "owner_id": 2
+    },
+    {
+      "id": 3,
+      "make": "Honda",
+      "model": "Civic",
+      "seats": 5,
+      "owner_id": 3
+    },
+    {
+      "id": 4,
+      "make": "Ford",
+      "model": "Fiesta",
+      "seats": 4,
+      "owner_id": 4
+    }
+  ],
+  "people": [
+    { "id": 1, "name": "Aria Moon" },
+    { "id": 2, "name": "Leo Storm" },
+    { "id": 3, "name": "Nova Star" },
+    { "id": 4, "name": "Orion Vega" },
+    { "id": 5, "name": "Skye Aurora" },
+    { "id": 6, "name": "Kai Ocean" },
+    { "id": 7, "name": "Luna Sol" },
+    { "id": 8, "name": "Phoenix Blaze" },
+    { "id": 9, "name": "Seren Rain" }
+  ]
+}

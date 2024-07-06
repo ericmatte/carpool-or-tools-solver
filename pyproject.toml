@@ -1,0 +1,28 @@
+[project]
+name = "or-tools-boilerplate"
+version = "0.0.1"
+description = "Boilerplate for CP-SAT problems using OR-Tools"
+authors = [
+    {name = "Eric Matte", email = "eric_matte@outlook.com"},
+]
+dependencies = [
+    "ortools>=9.8.3296",
+]
+requires-python = ">=3.12"
+readme = "README.md"
+license = {text = "MIT"}
+
+[tool.pdm.dev-dependencies]  # This is dev dependencies
+testing = [
+    "pytest>=7.4.4",
+    "pytest-watch>=4.2.0",
+]
+
+[tool.pdm.scripts]
+start = "scripts/run.py"
+test = "pytest --durations=0 --disable-warnings"
+test_logs = "pdm test -o log_cli=true -o log_cli_level=DEBUG -o log_cli_format='%(levelname)s\t%(message)s'"
+test_watch = "ptw --clear -- --disable-warnings"
+
+[tool.black]
+line-length = 140
