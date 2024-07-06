@@ -41,7 +41,8 @@ class Solutionner(CpSolverSolutionCallback):
         self._status = Status(cp_solver.Solve(model, self))
 
         title, *stats = cp_solver.ResponseStats().split("\n")
-        logging.debug(f"Found {self._feasible_solution_count} feasible solutions.")
+        optimal_log = "and 1 optimal " if self._status == Status.optimal else ""
+        logging.debug(f"Found {self._feasible_solution_count} feasible {optimal_log}solutions.")
         logging.debug(f"{title}")
         [logging.debug(f"  {l}") for l in stats]
 

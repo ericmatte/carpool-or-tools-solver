@@ -2,7 +2,7 @@ from enum import Enum
 from typing import Sequence
 
 from ortools.sat.python import cp_model
-from ortools.sat.python.cp_model import IntVar, LinearExpr, _ProductCst, _Sum
+from ortools.sat.python.cp_model import IntegralT, IntVar, LinearExpr, _ProductCst, _Sum
 
 from constraints.input import ConstraintInput
 
@@ -19,7 +19,7 @@ class Weight(Enum):
 class CPHelper:
     def __init__(self, input: ConstraintInput):
         self.input = input
-        self._vars_to_maximise: list[LinearExpr | int] = []
+        self._vars_to_maximise: list[IntegralT | LinearExpr] = []
 
     def maximize(self, weight: Weight, value: LinearExpr | int, max_value: int):
         self._set_objective(weight.name, value, max_value, weight.value)

@@ -16,6 +16,7 @@ license = {text = "MIT"}
 testing = [
     "pytest>=7.4.4",
     "pytest-watch>=4.2.0",
+    "pyright>=1.1.370",
 ]
 
 [tool.pdm.scripts]
@@ -23,6 +24,7 @@ start = "scripts/run.py"
 test = "pytest --durations=0 --disable-warnings"
 test_logs = "pdm test -o log_cli=true -o log_cli_level=DEBUG -o log_cli_format='%(levelname)s\t%(message)s'"
 test_watch = "ptw --clear -- --disable-warnings"
+typecheck = "pyright"
 
 [tool.black]
 line-length = 140
