@@ -22,7 +22,7 @@ testing = [
 [tool.pdm.scripts]
 start = "scripts/run.py"
 test = "pytest --durations=0 --disable-warnings"
-test_logs = "pdm test -o log_cli=true -o log_cli_level=DEBUG -o log_cli_format='%(levelname)s\t%(message)s'"
+test_logs = "pdm test -o log_cli=true -o log_cli_level=DEBUG -o log_cli_format='%(levelname)s\t%(message)s' --show-capture=stdout"
 test_watch = "ptw --clear -- --disable-warnings"
 typecheck = "pyright"
 

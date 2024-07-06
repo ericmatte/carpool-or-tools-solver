@@ -15,6 +15,7 @@ from data.person import Person
 from data.solver_results import SolverResults
 from utils.cp_helper import CPHelper
 from utils.solutionner import Solutionner, Status
+from utils.vars_manager import VarsManager
 
 Constraint = Callable[[ConstraintInput, CPHelper], None]
 
@@ -36,13 +37,14 @@ class CarPoolSolver:
     def __init__(self, people: list[Person], cars: list[Car]):
         self.model = CpModel()
         self.constraints = CONSTRAINTS
-        self.input = ConstraintInput(self.model, people, cars)
+        self.vars = VarsManager(self.model)
+        self.input = ConstraintInput(self.model, self.vars, people, cars)
         self.solutionner = Solutionner()
 
     def solve(self) -> dict[str, Any]:
         logging.info(f"Solving with {len(self.constraints)} constraints: {', '.join([c.__name__ for c in self.constraints])}")
 
-        helpers = CPHelper(self.input)
+        helpers = CPHelper(self.input, self.vars)
         for constraint in self.constraints:
             constraint(self.input, helpers)
         helpers.apply_objectives()
@@ -50,8 +52,8 @@ class CarPoolSolver:
         status = self.solutionner.solve(self.input.model)
         if status in [Status.optimal, Status.feasible]:
             cars_with_people = self._filled_cars_with_people()
-            a = self._is_assigned
             result = SolverResults(cars_with_people, self.input.people, self.input.cars)
+            helpers.vars.print(self.solutionner)
             result.print()
             return {
                 "success": True,
@@ -63,8 +65,8 @@ class CarPoolSolver:
             return {"success": False, "status": status.name}
 
     def _filled_cars_with_people(self):
-        """Only works once the model has been solved."""
         return {car.id: [person.id for person in self.input.people if self._is_assigned(person, car)] for car in self.input.cars}
 
     def _is_assigned(self, person: Person, car: Car) -> bool:
+        """Only works once the model has been solved."""
         return self.solutionner.Value(self.input.person_to_car[(person.id, car.id)]) == 1

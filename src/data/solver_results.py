@@ -1,4 +1,5 @@
 import logging
+
 from data.car import Car
 from data.person import Person
 
@@ -16,15 +17,16 @@ class SolverResults:
         self.cars = cars
         self.cars_with_people: list[CarWithPeople] = []
         self.unused_cars: list[Car] = []
+        all_passengers: list[Person] = []
 
         for car in cars:
             passengers = [person for person in people if person.id in cars_with_people_results.get(car.id, [])]
             if len(passengers) > 0:
                 self.cars_with_people.append(CarWithPeople(car, passengers))
+                all_passengers.extend(passengers)
             else:
                 self.unused_cars.append(car)
 
-        all_passengers = [passenger for car in self.cars_with_people for passenger in car.passengers]
         self.unassigned_people = [person for person in people if person not in all_passengers]
 
     @property
@@ -35,12 +37,6 @@ class SolverResults:
         return str(self._json)
 
     def print(self):
-        if logging.getLogger().isEnabledFor(logging.DEBUG):
-            # TODO: Add cleaner logs
-            # for name, var in self.person_to_car.items():
-            #     logging.debug(f"  - {name} = {self.solutionner.Value(var)}")
-            pass
-
         if logging.getLogger().isEnabledFor(logging.INFO):
             people_assigned_count = sum(len(car.passengers) for car in self.cars_with_people)
             logging.info(f"Number of person assignations met = {people_assigned_count} / {len(self.people)}.")
