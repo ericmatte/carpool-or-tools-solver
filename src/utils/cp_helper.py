@@ -8,7 +8,7 @@ from utils.vars_manager import VarsManager, infinity
 
 
 class Weight(Enum):
-    """Weight for the objectives, to balance them. Higher weight means higher priority."""
+    """Weight for the objectives. Higher weight means higher priority."""
 
     maximize_seated_people = 5
     minimize_cars = 1
@@ -26,18 +26,17 @@ class CPHelper:
     def minimize(self, weight: Weight, value: LinearExpr | int, max_value: int):
         self._set_objective(weight.name, value, max_value, -weight.value)
 
-    def apply_objectives(self):
-        """Maximise all the objectives at once, since we can only have one main objective allowed in the CP model."""
-        self.input.model.Maximize(sum(self._expressions_to_maximise))
-
     def max(self, name: str, values: Sequence[IntVar | _Sum | _ProductCst | int]):
         """max() from python is interpreted before the Add() method is called.
-        The result is unpredictable, and therefore we need to use the AddMaxEquality method from the CP model.
-        This returns the maximum value variable of the list of values.
+        The result is unpredictable, so we must use the AddMaxEquality method from the CP model.
         """
         max_overtime_day = self.vars.new_int(name, min=0, max=infinity)
         self.input.model.AddMaxEquality(max_overtime_day, values)
         return max_overtime_day
+
+    def apply_objectives(self):
+        """Maximise all objectives at once, since we can only have one main objective used by the CP model."""
+        self.input.model.Maximize(sum(self._expressions_to_maximise))
 
     def _set_objective(self, name: str, value: LinearExpr | int, max_value: int, weight: int):
         target = self.vars.new_int(name)
