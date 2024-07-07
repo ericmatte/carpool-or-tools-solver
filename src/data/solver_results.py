@@ -38,6 +38,7 @@ class SolverResults:
 
     def print(self):
         if logging.getLogger().isEnabledFor(logging.INFO):
+            logging.info("")
             people_assigned_count = sum(len(car.passengers) for car in self.cars_with_people)
             logging.info(f"Number of person assignations met = {people_assigned_count} / {len(self.people)}.")
             logging.info("")
