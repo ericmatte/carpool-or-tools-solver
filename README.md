@@ -2,7 +2,7 @@ A Python Carpooling problem solver example for using the [CP-SAT Solver](https:/
 
 Takes a JSON file with a list of cars and people and returns the optimal carpooling solution.
 
-## Setup
+### Setup
 
 ```bash
 brew install pdm python@3.12
@@ -15,9 +15,9 @@ pdm install
 pdm start tests/mocks/one_car.json
 ```
 
-Or with VSCode, press `F5` and select which mock data to use.
+Or with VSCode, press <kbd>F5</kbd> and select which mock data to use.
 
-## Running tests
+### Running tests
 
 ```bash
 pdm test
