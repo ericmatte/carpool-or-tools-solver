@@ -4,21 +4,20 @@ set -e
 
 rm -rf dist && mkdir dist
 
-echo "::group::Build dependencies"
+echo "Installing dependencies"
 pdm install --prod
-mv .venv/lib/python3.*/site-packages/* dist/
-echo "::endgroup::"
+cp -r .venv/lib/python3.*/site-packages/* dist/
 
-echo "::group::Zipping the Lambda code"
+echo "Copying source code"
 cp -r src/* dist/
-cd dist
-zip -r lambda.zip ./*
-echo "::endgroup::"
 
-function get_directory_size() {
+echo "Zipping the Lambda code"
+cd dist
+zip -rq lambda.zip ./*
+
+function get_folder_size() {
     du -sh "$1" | awk '{print $1}'
 }
 
 echo
-echo "Build complete:"
-echo "- lambda.zip size: $(get_directory_size lambda.zip)"
+echo "Build complete: lambda.zip ($(get_folder_size lambda.zip))"
