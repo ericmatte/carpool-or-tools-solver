@@ -1,0 +1,8 @@
+{
+  "cars": [],
+  "people": [
+    { "id": 1, "name": "Aria Moon" },
+    { "id": 2, "name": "Leo Storm" },
+    { "id": 3, "name": "Nova Star" }
+  ]
+}

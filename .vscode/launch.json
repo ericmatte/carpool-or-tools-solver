@@ -16,7 +16,7 @@
     {
       "id": "jsonFile",
       "type": "promptString",
-      "description": "JSON mock to use: [overflow, one_car, two_cars, three_cars]",
+      "description": "JSON mock to use: [overflow, one_car, two_cars, three_cars, impossible]",
       "default": "overflow"
     }
   ]
