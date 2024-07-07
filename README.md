@@ -34,9 +34,3 @@ Run tests with debug logs:
 ```bash
 pdm test_logs
 ```
-
-Run tests in watch mode:
-
-```bash
-pdm test_watch # Run tests in watch mode
-```

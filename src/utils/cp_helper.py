@@ -27,8 +27,8 @@ class CPHelper:
         self._set_objective(weight.name, value, max_value, -weight.value)
 
     def max(self, name: str, values: Sequence[IntVar | _Sum | _ProductCst | int]):
-        """max() from python is interpreted before the Add() method is called.
-        The result is unpredictable, so we must use the AddMaxEquality method from the CP model.
+        """max() from python is interpreted before the solver runs,
+        so we must use AddMaxEquality method from the CP model to ensure a proper behaviour.
         """
         max_overtime_day = self.vars.new_int(name, min=0, max=infinity)
         self.input.model.AddMaxEquality(max_overtime_day, values)

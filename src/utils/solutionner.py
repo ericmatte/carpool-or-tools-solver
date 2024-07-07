@@ -31,19 +31,19 @@ class Solutionner(CpSolverSolutionCallback):
 
     @property
     def solution_count(self):
-        if self._status == Status.optimal:
-            return 1 + self._feasible_solution_count
-        return self._feasible_solution_count
+        optimal_count = 1 if self._status == Status.optimal else 0
+        return optimal_count + self._feasible_solution_count
 
     def solve(self, model: CpModel):
         cp_solver = CpSolver()
         cp_solver.parameters.max_time_in_seconds = TIME_LIMIT
         self._status = Status(cp_solver.Solve(model, self))
+        self._print_stats(cp_solver)
+        return self._status
 
+    def _print_stats(self, cp_solver: CpSolver):
         title, *stats = cp_solver.ResponseStats().split("\n")
         optimal_log = "and 1 optimal " if self._status == Status.optimal else ""
         logging.debug(f"Found {self._feasible_solution_count} feasible {optimal_log}solutions.")
         logging.debug(f"{title}")
         [logging.debug(f"  {l}") for l in stats]
-
-        return self._status

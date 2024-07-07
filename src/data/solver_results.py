@@ -34,7 +34,7 @@ class SolverResults:
         return self._json
 
     def __repr__(self) -> str:
-        return str(self._json)
+        return str(self._json)  # For logging purposes
 
     def print(self):
         if logging.getLogger().isEnabledFor(logging.INFO):
