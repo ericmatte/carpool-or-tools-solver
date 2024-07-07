@@ -1,7 +1,7 @@
 [project]
-name = "or-tools-boilerplate"
-version = "0.0.1"
-description = "Boilerplate for CP-SAT problems using OR-Tools"
+name = "carpool-or-tools-solver"
+version = "0.1.0"
+description = "Carlpool problem solver using CP-SAT Solver from Google OR-Tools"
 authors = [
     {name = "Eric Matte", email = "eric_matte@outlook.com"},
 ]

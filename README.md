@@ -1,4 +1,4 @@
-A Python Carpooling problem solver example for using the [CP-SAT Solver](https://developers.google.com/optimization/cp/cp_solver) from Google OR-Tools.
+A Python Carpooling problem solver example for using the [CP-SAT Solver](https://developers.google.com/optimization/cp/cp_solver) from [Google OR-Tools](https://developers.google.com/optimization/introduction/python).
 
 Takes a JSON file with a list of cars and people and returns the optimal carpooling solution.
 
